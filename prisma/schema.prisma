@@ -1,0 +1,70 @@
+// --------------------------------------
+// PRISMA CONFIG
+// --------------------------------------
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --------------------------------------
+// MODELOS
+// --------------------------------------
+
+/// Usuario del sistema: paciente, logopeda o admin.
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String?
+  password     String
+
+  // Rol del usuario: paciente, terapeuta o superadmin.
+  role         Role     @default(PATIENT)
+
+  // Relación recursiva (si es paciente, a qué logopeda está asignado)
+  therapistId  String?
+  therapist    User?    @relation("TherapistPatients", fields: [therapistId], references: [id])
+  patients     User[]   @relation("TherapistPatients")
+
+  // Relación con las solicitudes de conexión
+  requests     ConnectionRequest[] @relation("PatientRequests")
+  received     ConnectionRequest[] @relation("TherapistRequests")
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Fecha límite para que un paciente se vincule a un terapeuta
+  expiresAt    DateTime?
+}
+
+/// Solicitud de un paciente para conectarse con un logopeda
+model ConnectionRequest {
+  id           String   @id @default(cuid())
+  patientId    String
+  therapistId  String
+  status       RequestStatus @default(PENDING)
+  createdAt    DateTime @default(now())
+
+  patient      User     @relation("PatientRequests", fields: [patientId], references: [id])
+  therapist    User     @relation("TherapistRequests", fields: [therapistId], references: [id])
+}
+
+// --------------------------------------
+// ENUMS
+// --------------------------------------
+
+enum Role {
+  PATIENT
+  THERAPIST
+  ADMIN
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
