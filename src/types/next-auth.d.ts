@@ -1,4 +1,5 @@
 import { DefaultSession, DefaultUser } from "next-auth";
+
 import { UserRoles } from "./user/user-roles.enum";
 
 declare module "next-auth" {

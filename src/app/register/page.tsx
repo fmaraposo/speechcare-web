@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { JSX, useState } from "react";
 
-export default function RegisterPage() {
+export default function RegisterPage(): JSX.Element {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
