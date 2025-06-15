@@ -1,6 +1,6 @@
-// --------------------------------------
-// PRISMA CONFIG
-// --------------------------------------
+// -------------------------------------- //
+//             PRISMA CONFIG              //
+// -------------------------------------- //
 
 generator client {
   provider = "prisma-client-js"
@@ -11,60 +11,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// --------------------------------------
-// MODELOS
-// --------------------------------------
+// --------------------------------------   //
+//                MODELOS                  //
+// -------------------------------------- //
 
 /// Usuario del sistema: paciente, logopeda o admin.
 model User {
-  id           String   @id @default(cuid())
+  id           String   @id @default(uuid())
   email        String   @unique
   name         String?
   password     String
-
-  // Rol del usuario: paciente, terapeuta o superadmin.
   role         Role     @default(PATIENT)
-
-  // Relación recursiva (si es paciente, a qué logopeda está asignado)
-  therapistId  String?
-  therapist    User?    @relation("TherapistPatients", fields: [therapistId], references: [id])
-  patients     User[]   @relation("TherapistPatients")
-
-  // Relación con las solicitudes de conexión
-  requests     ConnectionRequest[] @relation("PatientRequests")
-  received     ConnectionRequest[] @relation("TherapistRequests")
-
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-
-  // Fecha límite para que un paciente se vincule a un terapeuta
-  expiresAt    DateTime?
+  expiresAt    DateTime? // Fecha límite para que un paciente se vincule a un terapeuta
+  therapistId  String?   // Solo se rellenará si el user es PATIENT
+  therapist    User?    @relation("TherapistPatients", fields: [therapistId], references: [id])
+  patients     User[]   @relation("TherapistPatients")
 }
 
-/// Solicitud de un paciente para conectarse con un logopeda
-model ConnectionRequest {
-  id           String   @id @default(cuid())
-  patientId    String
-  therapistId  String
-  status       RequestStatus @default(PENDING)
-  createdAt    DateTime @default(now())
-
-  patient      User     @relation("PatientRequests", fields: [patientId], references: [id])
-  therapist    User     @relation("TherapistRequests", fields: [therapistId], references: [id])
-}
-
-// --------------------------------------
-// ENUMS
-// --------------------------------------
+// -------------------------------------- //
+//                ENUMS                   //
+// -------------------------------------- //
 
 enum Role {
   PATIENT
   THERAPIST
   ADMIN
-}
-
-enum RequestStatus {
-  PENDING
-  ACCEPTED
-  REJECTED
 }
