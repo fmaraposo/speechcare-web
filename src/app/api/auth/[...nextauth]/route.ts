@@ -11,8 +11,8 @@ const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
-    maxAge: 60 * 60 * 24 * 7, // 7 days
-    updateAge: 60 * 60 * 12, // 24 hours
+    maxAge: 60 * 60 * 24, // Token expires in 1 day
+    updateAge: 60 * 60 * 4, // Token refresh every 12 hours
   },
   providers: [
     CredentialsProvider({

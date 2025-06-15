@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { addDays, getCurrentDate } from "@/lib/helpers/date-helper";
 import prisma from "@/lib/prisma/prisma";
 
-export async function POST(req: Request) {
+export async function POST(req: Request): Promise<NextResponse> {
   try {
     const body = await req.json();
     const { email, password } = body;
@@ -14,8 +14,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "Email and password are required" }, { status: 400 });
     }
 
-    console.log("Prisma User", prisma.user);
-    console.log("Email Recibido", email);
     const existingUser = await prisma.user?.findUnique({ where: { email } });
     if (existingUser) {
       return NextResponse.json({ message: "User already exists" }, { status: 409 });
