@@ -1,0 +1,54 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: var(--background-4);
+    color: var(--text-color-default);
+
+    &::-webkit-scrollbar {
+        display: none;
+        /* Safari and Chrome */
+    }
+}
+
+#app {
+    height: 100%;
+    flex: 1 1 100%;
+}
+
+.main {
+    min-height: 100%;
+    scroll-behavior: smooth;
+
+    &--auth {
+        height: auto;
+        min-height: 100%;
+        background-image: url('/images/auth/background.png');
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+.q-inner-loading {
+    z-index: 999999;
+}
+
+.q-menu {
+    background: var(--background-2);
+}
+
+@media screen and (max-width: 767px) {
+    .show-on-desktop {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .hide-on-desktop {
+        display: none !important;
+    }
+}

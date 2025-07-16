@@ -1,7 +1,3 @@
-body {
-    border: 2px solid red;
-
-    div {
-        border: 1px solid blue;
-    }
-}
+@use './reset';
+@use './main';
+@use './vars';

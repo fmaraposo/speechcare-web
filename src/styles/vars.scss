@@ -1,0 +1,53 @@
+:root {
+    --font-family-default: 'Roboto';
+    --font-family-title: 'Roboto';
+
+    --text-color-default: #0f0f13;
+
+    --q-dark-page: #0f0f13;
+    --q-dark: #212125;
+
+    --background-0: #0f0f13;
+    --background-1: #0c0c2c;
+    --background-2: #33333a;
+    --background-4: #FFFFFF;
+
+    --q-primary: #2dd9a9;
+    --q-secondary: #fa3d3d;
+    --q-accent: #b82198;
+
+    --q-grey: #a7aeb8;
+
+    --q-positive: #0ec057;
+    --q-negative: #e61947;
+    --q-info: #059de2;
+    --q-warning: #cc9c00;
+}
+
+[color="primary"] {
+    color: var(--q-primary);
+}
+
+[color="secondary"] {
+    color: var(--q-secondary);
+}
+
+[color="accent"] {
+    color: var(--q-accent);
+}
+
+[color="positive"] {
+    color: var(--q-positive);
+}
+
+[color="negative"] {
+    color: var(--q-negative);
+}
+
+[color="info"] {
+    color: var(--q-info);
+}
+
+[color="warning"] {
+    color: var(--q-warning);
+}
