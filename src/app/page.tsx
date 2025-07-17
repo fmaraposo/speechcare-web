@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 export default function Home(): JSX.Element {
   useEffect(() => {
     console.warn("Home component mounteddddd");
-    console.log('dhdddddddh')
+    console.log('dhddddddddh')
   }, []);
 
   return (
