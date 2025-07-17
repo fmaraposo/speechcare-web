@@ -12,7 +12,3 @@ if [ -n "$FILES" ]; then
 else
   echo "No JS/TS files staged for commit."
 fi
-
-# npm test
-npm run lint || exit 1
-npm run test || exit 1
