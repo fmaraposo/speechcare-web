@@ -36,10 +36,6 @@ const COMMON_RULES = {
   "prefer-promise-reject-errors": "error",
   // BEST PRACTICES
   "prefer-arrow-callback": "warn",
-  "no-unused-vars": ["warn", {
-    varsIgnorePattern: "^_",
-    argsIgnorePattern: "^_",
-  }],
   "no-unreachable": "warn",
   "class-methods-use-this": "warn",
   "no-extra-bind": "warn",
