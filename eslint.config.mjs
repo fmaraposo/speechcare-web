@@ -14,10 +14,13 @@ const compat = new FlatCompat({
 const IMPORT_RULES = {
   "simple-import-sort/imports": "error",
   "simple-import-sort/exports": "error",
-  'no-unused-vars': ['warn', {
-    varsIgnorePattern: '^_',
-    argsIgnorePattern: '^_',
-  }],
+  "no-unused-vars": [
+    "warn",
+    {
+      varsIgnorePattern: "^_",
+      argsIgnorePattern: "^_",
+    },
+  ],
 };
 
 const TYPESCRIPT_RULES = {
@@ -26,29 +29,31 @@ const TYPESCRIPT_RULES = {
 };
 
 const COMMON_RULES = {
-  'no-use-before-define': 'error',
-  'no-param-reassign': ['error', { props: true }],
-  'no-self-compare': 'error',
-  'prefer-promise-reject-errors': 'error',
-  'prefer-arrow-callback': 'warn',
-  'no-unused-vars': ['warn', {
-    varsIgnorePattern: '^_',
-    argsIgnorePattern: '^_',
-  }],
-  'no-unreachable': 'warn',
-  'class-methods-use-this': 'warn',
-  'no-extra-bind': 'warn',
-  'no-trailing-spaces': 'warn',
-  'no-mixed-operators': 'warn',
-  'prefer-template': 'warn',
-  'no-console': ['warn', {
-    allow: ['warn', 'error'],
-  }],
-  'comma-spacing': ['warn', {
-    before: false,
-    after: true,
-  }],
-}
+  "no-use-before-define": "error",
+  "no-param-reassign": ["error", { props: true }],
+  "no-self-compare": "error",
+  "prefer-promise-reject-errors": "error",
+  "prefer-arrow-callback": "warn",
+  "no-unreachable": "warn",
+  "class-methods-use-this": "warn",
+  "no-extra-bind": "warn",
+  "no-trailing-spaces": "warn",
+  "no-mixed-operators": "warn",
+  "prefer-template": "warn",
+  "no-console": [
+    "warn",
+    {
+      allow: ["warn", "error"],
+    },
+  ],
+  "comma-spacing": [
+    "warn",
+    {
+      before: false,
+      after: true,
+    },
+  ],
+};
 
 const eslintConfig = [
   ...compat.extends(
@@ -65,7 +70,7 @@ const eslintConfig = [
     rules: {
       ...IMPORT_RULES,
       ...TYPESCRIPT_RULES,
-      ...COMMON_RULES
+      ...COMMON_RULES,
     },
   },
 ];
