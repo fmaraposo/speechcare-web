@@ -1,11 +1,11 @@
-#!/usr/bin/env sh
+#!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
 FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|tsx)$')
 
 if [ -n "$FILES" ]; then
-  echo "🔍 Running ESLint on staged files..."
-  npx eslint --config eslint.config.js -- $FILES
+  echo "🔍 Running ESLint with config..."
+  npx eslint --config eslint.config.mjs -- $FILES
   RESULT=$?
   if [ $RESULT -ne 0 ]; then
     echo "❌ ESLint failed. Commit aborted."
@@ -14,4 +14,5 @@ if [ -n "$FILES" ]; then
 else
   echo "✅ No JS/TS files staged for commit."
 fi
+
 
