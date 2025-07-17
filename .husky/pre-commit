@@ -1,3 +1,4 @@
+#!/usr/bin/env sh
 # Lint solo archivos staged con ESLint
 FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|tsx)$')
 
@@ -12,3 +13,7 @@ if [ -n "$FILES" ]; then
 else
   echo "No JS/TS files staged for commit."
 fi
+
+# npm test
+npm run lint || exit 1
+npm run test || exit 1
