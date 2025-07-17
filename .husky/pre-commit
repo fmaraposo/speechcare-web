@@ -1,15 +1,12 @@
-# Lint solo archivos staged con ESLint
-FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|tsx)$')
+#!/usr/bin/env sh
 
-if [ -n "$FILES" ]; then
-  echo "Running ESLint on staged files..."
-  npx eslint $FILES
-  RESULT=$?
-  if [ $RESULT -ne 0 ]; then
-    echo "ESLint failed. Commit aborted."
-    exit 1
-  fi
-else
-  echo "No JS/TS files staged for commit."
-fi
+# sort locales
+for file in src/i18n/locales/*.json; do
+  jq -r -s --sort-keys 'sort_by(.key) | .[]' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+  git add "$file"
+done
+
+# npm test
+npm run lint || exit 1
+npm run test || exit 1
 
