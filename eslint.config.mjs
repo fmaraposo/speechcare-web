@@ -25,6 +25,31 @@ const TYPESCRIPT_RULES = {
   "@typescript-eslint/explicit-module-boundary-types": "error",
 };
 
+const COMMON_RULES = {
+  'no-use-before-define': 'error',
+  'no-param-reassign': ['error', { props: true }],
+  'no-self-compare': 'error',
+  'prefer-promise-reject-errors': 'error',
+  'prefer-arrow-callback': 'warn',
+  'no-unused-vars': ['warn', {
+    varsIgnorePattern: '^_',
+    argsIgnorePattern: '^_',
+  }],
+  'no-unreachable': 'warn',
+  'class-methods-use-this': 'warn',
+  'no-extra-bind': 'warn',
+  'no-trailing-spaces': 'warn',
+  'no-mixed-operators': 'warn',
+  'prefer-template': 'warn',
+  'no-console': ['warn', {
+    allow: ['warn', 'error'],
+  }],
+  'comma-spacing': ['warn', {
+    before: false,
+    after: true,
+  }],
+}
+
 const eslintConfig = [
   ...compat.extends(
     "next/core-web-vitals",
@@ -40,6 +65,7 @@ const eslintConfig = [
     rules: {
       ...IMPORT_RULES,
       ...TYPESCRIPT_RULES,
+      ...COMMON_RULES
     },
   },
 ];
