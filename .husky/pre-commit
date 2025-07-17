@@ -1,12 +1,4 @@
-#!/usr/bin/env sh
-
-# sort locales
-for file in src/i18n/locales/*.json; do
-  jq -r -s --sort-keys 'sort_by(.key) | .[]' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
-  git add "$file"
-done
-
-# npm test
-npm run lint || exit 1
-npm run test || exit 1
+# .husky/pre-commit
+prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
+git update-index --again
 
