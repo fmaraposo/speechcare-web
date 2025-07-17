@@ -1,14 +1,5 @@
-# Lint solo archivos staged con ESLint
-FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|tsx)$')
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
-if [ -n "$FILES" ]; then
-  echo "Running ESLint on staged files..."
-  npx eslint --config eslint.config.mjs $FILES
-  RESULT=$?
-  if [ $RESULT -ne 0 ]; then
-    echo "ESLint failed. Commit aborted."
-    exit 1
-  fi
-else
-  echo "No JS/TS files staged for commit."
-fi
+npx lint-staged
+

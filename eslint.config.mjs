@@ -114,6 +114,14 @@ const COMMON_RULES = {
 };
 
 const eslintConfig = [
+  {
+    ignores: [
+      'dist/**',
+      'node_modules/**',
+      'public/**',
+      'src/assets/**',
+    ],
+  },
   ...compat.extends(
     "next/core-web-vitals",
     "next/typescript",
