@@ -3,7 +3,7 @@ FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|tsx)
 
 if [ -n "$FILES" ]; then
   echo "Running ESLint on staged files..."
-  npx eslint $FILES
+  npx eslint --config eslint.config.mjs $FILES
   RESULT=$?
   if [ $RESULT -ne 0 ]; then
     echo "ESLint failed. Commit aborted."
