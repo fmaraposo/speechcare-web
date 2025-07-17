@@ -14,6 +14,10 @@ const compat = new FlatCompat({
 const IMPORT_RULES = {
   "simple-import-sort/imports": "error",
   "simple-import-sort/exports": "error",
+  'no-unused-vars': ['warn', {
+    varsIgnorePattern: '^_',
+    argsIgnorePattern: '^_',
+  }],
 };
 
 const TYPESCRIPT_RULES = {
