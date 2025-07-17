@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { JSX } from "react";
+import React, { useEffect } from 'react';
+import { useState } from 'react';
+
 
 export default function Home(): JSX.Element {
   return (
