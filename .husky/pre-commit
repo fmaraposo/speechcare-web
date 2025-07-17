@@ -1,4 +1,23 @@
-# .husky/pre-commit
-prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
-git update-index --again
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
+# Obtén archivos staged JS/TS con espacios escapados correctamente
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|tsx)$' | sed 's/ /\\ /g')
+
+if [ -n "$FILES" ]; then
+  echo "Linting staged files with ESLint..."
+  # Ejecuta eslint con config explícito y arregla errores
+  npx eslint --config eslint.config.mjs --fix -- $FILES
+  
+  # Re-agrega al staging los archivos corregidos
+  git add $FILES
+  
+  # Ejecuta eslint para validar sin --fix, falla si hay errores
+  npx eslint --config eslint.config.mjs -- $FILES
+  if [ $? -ne 0 ]; then
+    echo "ESLint failed. Commit aborted."
+    exit 1
+  fi
+else
+  echo "No staged JS/TS files to lint."
+fi
