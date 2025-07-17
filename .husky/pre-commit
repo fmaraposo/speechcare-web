@@ -1,4 +1,3 @@
-#!/usr/bin/env sh
 # Lint solo archivos staged con ESLint
 FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|ts|tsx)$')
 

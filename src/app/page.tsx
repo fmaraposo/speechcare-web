@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 
 export default function Home(): JSX.Element {
   useEffect(() => {
-    console.log("Home component mounted");
+    console.log("Home component mounteddd");
   }, []);
 
   return (
