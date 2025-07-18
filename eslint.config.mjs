@@ -61,6 +61,7 @@ const eslintConfig = [
     "next/core-web-vitals",
     "next/typescript",
     "plugin:@typescript-eslint/recommended"
+    //"plugin:prettier/recommended" HAY QUE VER COMO TRATAR ESTO
   ),
   {
     plugins: {
