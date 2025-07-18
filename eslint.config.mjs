@@ -60,7 +60,6 @@ const eslintConfig = [
   ...compat.extends(
     "next/core-web-vitals",
     "next/typescript",
-    "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended"
   ),
   {
