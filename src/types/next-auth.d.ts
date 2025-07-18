@@ -1,13 +1,13 @@
-import { DefaultSession, DefaultUser } from "next-auth";
+import { DefaultSession, DefaultUser } from 'next-auth';
 
-import { UserRoles } from "./user/user-roles.enum";
+import { UserRoles } from './user/user-roles.enum';
 
-declare module "next-auth" {
+declare module 'next-auth' {
   interface Session {
     user: {
       id: string;
       role: string;
-    } & DefaultSession["user"];
+    } & DefaultSession['user'];
   }
 
   interface User extends DefaultUser {
@@ -16,7 +16,7 @@ declare module "next-auth" {
   }
 }
 
-declare module "next-auth/jwt" {
+declare module 'next-auth/jwt' {
   interface JWT {
     id: string;
     role: UserRoles;
