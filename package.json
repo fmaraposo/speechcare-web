@@ -10,7 +10,8 @@
     "migrate": "npx prisma migrate dev",
     "studio": "dotenv -e .env.local -- npx prisma studio",
     "generate": "npx prisma generate",
-    "deploy:migration:production": "dotenv -e .env.production -- npx prisma migrate deploy"
+    "deploy:migration:production": "dotenv -e .env.production -- npx prisma migrate deploy",
+    "prepare": "husky"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",
@@ -21,7 +22,8 @@
     "next": "15.3.3",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "sass": "^1.89.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -33,15 +35,25 @@
     "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "^8.34.0",
     "@typescript-eslint/parser": "^8.34.0",
+    "autoprefixer": "^10.4.21",
     "dotenv-cli": "^8.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "postcss": "^8.5.6",
     "prettier": "^3.5.3",
     "prisma": "^6.9.0",
-    "tailwindcss": "^4",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "npx eslint --config eslint.config.mjs",
+      "npx eslint --config eslint.config.mjs --max-warnings=0"
+    ]
   }
 }
